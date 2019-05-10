@@ -3,13 +3,46 @@
 # Write a method that takes an array of consecutive (increasing) letters as input
 # and that returns the missing letter in the array.
 #
-# You will always get an valid array. And it will be always exactly one letter be
+# You will always get an valid array. And it will be always exactly one letter
 # missing. The length of the array will always be at least 2.
 # The array will always contain letters in only one case.
 #
 # Example:
 
-require 'pry'
+# CRAIG'S SLUSH
+# def find_missing_letter(array)
+#
+#   counter = 1
+#
+#   array.each do |letter|
+#     if letter.succ == array[counter]
+#       counter += 1
+#       next
+#     else
+#       return letter.succ
+#     end
+#   end
+# end
+
+
+p find_missing_letter(['a','b','c','d','f']) # -> 'e'
+p find_missing_letter(['O','Q','R','S']) # -> 'P'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=begin
+MY SLUSH
 
 def find_missing_letter(arr) # => ["a","b","c","d","f"]
   ord_arr = arr.map(&:ord) # => [97, 98, 99, 100, 102]
@@ -23,6 +56,4 @@ def find_missing_letter(arr) # => ["a","b","c","d","f"]
   end
 end # => "c"
 
-
-p find_missing_letter(['a','b','c','d','f']) # -> 'e'
-#find_missing_letter(['O','Q','R','S']) # -> 'P'
+=end

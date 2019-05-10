@@ -33,6 +33,14 @@ digital_root(493193)
 
 
 
+
+
+p digital_root(456) == 6
+p digital_root(169) == 7
+
+=begin
+MY SLUSH
+
 def digital_root(n) #  456
 
   # break condition n.to_s.size == 1
@@ -48,6 +56,4 @@ def digital_root(n) #  456
   digital_root(n)
 
 end
-
-p digital_root(456) == 6
-p digital_root(169) == 7
+=end

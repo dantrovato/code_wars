@@ -17,6 +17,14 @@
 # Error checking for text strings or other invalid inputs is not required, only
 # valid integers will be passed into the function.
 #
+
+p narcissistic?(5)
+p narcissistic?(153)
+p narcissistic?(1663)
+
+
+=begin
+MY SLUSH
 def narcissistic?(value) # => 153
   power = value.to_s.size
   digits_arr = value.to_s.chars.map(&:to_i)
@@ -24,6 +32,13 @@ def narcissistic?(value) # => 153
   powers_arr.sum == value
 end
 
-p narcissistic?(5)
-p narcissistic?(153)
-p narcissistic?(1663)
+CRAIG JONES'S
+def narcissistic?(integer) # => 153
+  array = integer.to_s.chars # => ['1', '5', '3']
+  power = array.count # => 3
+  # =>         [1, 5, 3]
+  new_number = array.map(&:to_i).map { |num| num ** power }.sum
+  new_number == integer
+end
+
+=end
