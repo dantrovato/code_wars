@@ -36,7 +36,6 @@ VALUES = {M => [1000, 'M'], D => [500, 'D'], C => [100, 'C'], L => [50, 'L'],
           X => [10, 'X'], V => [5, 'V'], I => [1, 'I'],}
 ARRAY_VALUES = [M, D, C, L, X, V, I]
 
-
 def get_old_romans(number)
   roman = []
   index = 0
@@ -60,60 +59,35 @@ def solution(number)
 
   result.gsub!(/DCCCC/, 'CM')
   result.gsub!(/MCCCC/, 'MCD')
-
+  result.gsub!(/MXXXX/, 'MXL')
+  result.gsub!(/DXXXX/, 'DXL')
+  result.gsub!(/MXXXX/, 'MXL')
   result.gsub!(/LXXXX/, 'XC')
   result.gsub!(/CXXXX/, 'CXL')
-
   result.gsub!(/VIIII/, 'IX')
   result.gsub!(/XIIII/, 'XIV')
-
   result.gsub!(/IIII/, 'IV')
   result.gsub!(/XIIII/, 'XIV')
-
-
+  result.gsub!(/CCCC/, 'CD')
   result
 end
 
-# p solution(91) == 'XCI'
-# p solution(984) == 'CMLXXXIV'
-# p solution(1000) ==  'M'
-# p solution(1889) == 'MDCCCLXXXIX'
-# p solution(1989) == 'MCMLXXXIX'
-# p solution(4) == 'IV'
-p solution(6) == 'VI' # => false
+p solution(91) == 'XCI'
+p solution(984) == 'CMLXXXIV'
+p solution(1000) ==  'M'
+p solution(1889) == 'MDCCCLXXXIX'
+p solution(1989) == 'MCMLXXXIX'
+p solution(4) == 'IV'
+p solution(6) == 'VI'
+
 =begin
-input: positive number
-req:
-  - letters go from greater on the left to smaller on the right
-  - if the letter to the left is < letter on the right then subtract smaller (left letter)
-    from bigger (right letter)
-output: string
+BEST SLUSH FROM CODEWARS;
 
-hi lev:
-  - map letters to numbers (already done above)
-  - perhaps make an array of variables [m, d, c, l, x, v, i]
-  - roman = ""
-  - iterate thru array
-    - if number >= element add el.upcase to roman and subtract el from number
-    - need to take into account the rule that if letter on left is smaller than
-      letter on right...
-  - loop through whole array each time
-  - break when number <= 0
-  - index = 0
-  - check if number >= 0
-    - if it is increase index and subtract value from number
+NUMERALS = { M: 1000, CM: 900, D: 500, CD: 400, C: 100, XC: 90,
+               L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1 }
 
-  - refactor DCCCCLXXX1111 => CMLXXXIV
-  - if a letter appears four times refactor
-      - take letter, append previous letter squeeze(letter) ?
-    else return letter
-
-- hi lev
-  - result = ""
-  - array.each_with_index => [DCCCCLXXX1111]
-    - if array.count(letter) == 4
-      - result << letter
-      - array.squeeze(letter)
-      - result << array[array.index(letter)]
-
+def solution(number)
+  return '' if number <= 0
+  NUMERALS.each { |key, val| return key.to_s + solution(number - val) if number >= val }
+end
 =end
