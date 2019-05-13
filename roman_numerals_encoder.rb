@@ -38,14 +38,12 @@ ARRAY_VALUES = [M, D, C, L, X, V, I]
 
 
 def get_old_romans(number)
-  roman = [] #
-  index = 0 # 1
+  roman = []
+  index = 0
   loop do
-    #         984
     break if number <= 0
-    # =>                       1, D
-    if number >= ARRAY_VALUES[index] # 500
-      roman << VALUES.select { |k, v| v.include?(ARRAY_VALUES[index])}.values[0].last # D
+    if number >= ARRAY_VALUES[index]
+      roman << VALUES.select { |k, v| v.include?(ARRAY_VALUES[index])}.values[0].last
       number -= ARRAY_VALUES[index]
     else
       index += 1
@@ -57,7 +55,9 @@ end
 def solution(number)
   result = ""
   old_roman = get_old_romans(number)
+  p old_roman
   old_roman.each { |letter| result << letter }
+
   result.gsub!(/DCCCC/, 'CM')
   result.gsub!(/MCCCC/, 'MCD')
 
@@ -66,16 +66,21 @@ def solution(number)
 
   result.gsub!(/VIIII/, 'IX')
   result.gsub!(/XIIII/, 'XIV')
-  result
 
+  result.gsub!(/IIII/, 'IV')
+  result.gsub!(/XIIII/, 'XIV')
+
+
+  result
 end
 
-p solution(91) == 'XCI'
-p solution(984) == 'CMLXXXIV'
-p solution(1000) ==  'M'
-p solution(1889) == 'MDCCCLXXXIX'
-p solution(1989) == 'MCMLXXXIX'
-
+# p solution(91) == 'XCI'
+# p solution(984) == 'CMLXXXIV'
+# p solution(1000) ==  'M'
+# p solution(1889) == 'MDCCCLXXXIX'
+# p solution(1989) == 'MCMLXXXIX'
+# p solution(4) == 'IV'
+p solution(6) == 'VI' # => false
 =begin
 input: positive number
 req:
